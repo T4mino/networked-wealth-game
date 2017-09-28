@@ -19,6 +19,8 @@
         <h3 v-if="currentGame.wealthVisible || !myNode">
           Their wealth: <span class="label label-default">{{selectedNode.value}}</span>
           </h3>
+		<h3>Their gender: <span class="label label-default">{{selectedNode.discriminator.gender.label}}</span></h3>
+		<h3>Their age: <span class="label label-default">{{selectedNode.discriminator.age.label}}</span></h3>
       </div>
     </div>
 

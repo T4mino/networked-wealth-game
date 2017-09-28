@@ -114,6 +114,8 @@
         added: (id, fields) => {
           // We have to copy _id to id here, or it won't sync correctly
           fields.id = id;
+		  // set color according to gender
+		  fields.color = Config.groups.gender.colors[fields.discriminator.gender.num];
           // Set special color for myself
           if (id === this.playerId) fields.color = Config.player.ownColor;
           visNodes.add(fields);

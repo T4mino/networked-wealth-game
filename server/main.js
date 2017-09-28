@@ -3,6 +3,7 @@ import { Random } from 'meteor/random';
 import { check } from 'meteor/check';
 import { shuffle } from '/imports/util';
 import json2csv from 'json2csv';
+import Config from '/imports/config';
 
 Meteor.publish('game', function(allGames=false) {
   if (allGames) {
@@ -78,7 +79,20 @@ Meteor.methods({
     // Create this many nodes and grab their ids
     // Give them convenient animal nicknames for identification
     for( let i = 0; i < numPlayers; i++ ) {
-      Nodes.insert({ value: 0, label: nicknames[i] });
+	  // Math.floor(Math.random() * (max - min + 1)) + min
+	  var genderNum = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
+	  var ageNum = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+	  Nodes.insert({ value: 0, label: nicknames[i], discriminator: {
+	    "gender": {
+		  "num": genderNum,
+		  "label": Config.groups.gender.labels[genderNum],
+		  "color": Config.groups.gender.colors[genderNum]
+		},
+		"age": {
+		  "num": ageNum,
+		  "label": Config.groups.age.labels[ageNum]
+		}
+	  }});
     }
 
     Games.insert({
