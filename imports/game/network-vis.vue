@@ -89,7 +89,7 @@
         this.$emit('hoveredNode', e.node);
       });
       this.network.on("blurNode", (e) => {
-        this.$emit('hoveredNode', null);
+        //this.$emit('hoveredNode', null);
       });
 
       // Clicking on nodes
@@ -115,13 +115,15 @@
           // We have to copy _id to id here, or it won't sync correctly
           fields.id = id;
 		  // set color according to gender
-		  fields.color = Config.groups.gender.colors[fields.discriminator.gender.num];
+		  fields.color = Config.groups.gender.colors[fields.discriminator.gender.label];
           // Set special color for myself
           if (id === this.playerId) fields.color = Config.player.ownColor;
           visNodes.add(fields);
         },
         changed: function(id, fields) {
           fields.id = id;
+		  fields.color = Config.groups.gender.colors[fields.discriminator.gender.label];
+          if (id === this.playerId) fields.color = Config.player.ownColor;
           visNodes.update(fields);
         },
         removed: (id) => {

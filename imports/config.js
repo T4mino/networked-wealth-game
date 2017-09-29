@@ -6,13 +6,15 @@ export default {
   },
   groups: {
 	gender: {
-	  colors: {
-		0: "#993399",
-		1: "#00cccc"
-	  },
 	  labels: {
-		0: "Male",
-		1: "Female"
+		0: "Female",
+		1: "Male",
+		2: "Other"
+	  },
+	  colors: {
+		"Female": "#993399",
+		"Male": "#00cccc",
+		"Other": "#ff3399"
 	  }
 	},
 	age: {

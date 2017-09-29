@@ -84,12 +84,10 @@ Meteor.methods({
 	  var ageNum = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
 	  Nodes.insert({ value: 0, label: nicknames[i], discriminator: {
 	    "gender": {
-		  "num": genderNum,
 		  "label": Config.groups.gender.labels[genderNum],
-		  "color": Config.groups.gender.colors[genderNum]
+		  "color": Config.groups.gender.colors[Config.groups.gender.labels[genderNum]]
 		},
 		"age": {
-		  "num": ageNum,
 		  "label": Config.groups.age.labels[ageNum]
 		}
 	  }});
